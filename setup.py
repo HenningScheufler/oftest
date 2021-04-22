@@ -23,7 +23,7 @@ def read(*names, **kwargs):
 
 setup(
     name='oftest',
-    version='0.0.1',
+    version='0.0.2',
     license='BSD-2-Clause',
     description='test framework for OpenFOAM',
     long_description='%s\n%s' % (
@@ -67,14 +67,12 @@ setup(
         'Issue Tracker': 'https://github.com/HenningScheufler/oftest/issues',
     },
     keywords=[
-        # eg: 'keyword1', 'keyword2', 'keyword3',
+        'openfoam', 'cfd', 'pytest', 'testing'
     ],
     python_requires='>=3.6',
     install_requires=['pandas>=0.21.0','pyfoam>=0.6.8','pytest>=6.0.0'],
     extras_require={
-        # eg:
-        #   'rst': ['docutils>=0.11'],
-        #   ':python_version=="2.6"': ['argparse'],
+          'dev': ['tox>=3.0.0'],
     }
     # entry_points={
     #     'console_scripts': [

@@ -19,22 +19,6 @@ Overview
     :target: https://oftest.readthedocs.io/
     :alt: Documentation Status
 
-.. |travis| image:: https://api.travis-ci.com/HenningScheufler/oftest.svg?branch=master
-    :alt: Travis-CI Build Status
-    :target: https://travis-ci.com/github/HenningScheufler/oftest
-
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/HenningScheufler/oftest?branch=master&svg=true
-    :alt: AppVeyor Build Status
-    :target: https://ci.appveyor.com/project/HenningScheufler/oftest
-
-.. |requires| image:: https://requires.io/github/HenningScheufler/oftest/requirements.svg?branch=master
-    :alt: Requirements Status
-    :target: https://requires.io/github/HenningScheufler/oftest/requirements/?branch=master
-
-.. |codecov| image:: https://codecov.io/gh/HenningScheufler/oftest/branch/master/graphs/badge.svg?branch=master
-    :alt: Coverage Status
-    :target: https://codecov.io/github/HenningScheufler/oftest
-
 .. |version| image:: https://img.shields.io/pypi/v/oftest.svg
     :alt: PyPI Package latest release
     :target: https://pypi.org/project/oftest
@@ -53,7 +37,7 @@ Overview
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/HenningScheufler/oftest/v0.0.0.svg
     :alt: Commits since latest release
-    :target: https://github.com/HenningScheufler/oftest/compare/v0.0.0...master
+    :target: https://github.com/HenningScheufler/oftest/compare/v0.0.2...master
 
 
 
@@ -89,28 +73,58 @@ To run all the tests run::
 
     tox
 
-Note, to combine the coverage data from all the tox environments run:
-
-.. list-table::
-    :widths: 10 90
-    :stub-columns: 1
-
-    - - Windows
-      - ::
-
-            set PYTEST_ADDOPTS=--cov-append
-            tox
-
-    - - Other
-      - ::
-
-            PYTEST_ADDOPTS=--cov-append tox
-
-
 
 Usage
 =====
 
-py.test tutorials_of2012/*  --collect-only --cache-clear --import-mode=importlib
+add conftest.py and pytest.ini to your project
 
-py.test tutorials_of2012/*  --collect-only --cache-clear --import-mode=importlib
+cat pytest.ini:
+
+::
+
+    [pytest]
+    #minversion = 6.0
+    addopts = -ra -v --import-mode=importlib --tb=no --cache-clear
+    testpaths =
+        tests
+
+cat conftest.py:
+
+::
+
+    import pytest
+
+    def pytest_addoption(parser):
+        parser.addoption(
+            "--writeNSteps", action="store", default=0, help="only perform specified number of timestep"
+        )
+        parser.addoption(
+            "--no-Allclean", action='store_false',default=True ,help="do not clean case after run"
+        )
+
+we assume that all OpenFOAM test are located in the tests folder and that each test can be started with a
+Allrun or Allclean script. By adding a test_*.py to each OpenFOAM test, py.test automatically discovers all
+tests in the folder and they can be run with:
+
+::
+
+    py.test
+
+with the command line option the test only run one time step
+
+::
+
+    py.test --writeNSteps 1
+
+
+Extensions
+----------
+
+Running py.test with multple threads:
+
+pip install pytest-xdist
+
+the output can be pretified with the extension:
+
+pip install pytest-sugar
