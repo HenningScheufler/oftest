@@ -1,0 +1,279 @@
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 371
+isoAdvection: Before conservative bounding: min(alpha) = -0.0338078, max(alpha) = 1 + 0.000668314
+isoAdvection: After conservative bounding: min(alpha) = -1.03448e-07, max(alpha) = 1 + 3.13094e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0267365, Final residual = 0.000344651, No Iterations 1
+time step continuity errors : sum local = 0.000169637, global = 2.04093e-05, cumulative = 3.58741e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000381193, Final residual = 1.60033e-05, No Iterations 3
+time step continuity errors : sum local = 7.89259e-06, global = -1.55724e-06, cumulative = 3.43169e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.28468e-05, Final residual = 9.85362e-08, No Iterations 46
+time step continuity errors : sum local = 4.86057e-08, global = 7.87167e-09, cumulative = 3.43247e-05
+ExecutionTime = 29.16 s  ClockTime = 29 s
+
+Courant Number mean: 0.109459 max: 0.703256
+Interface Courant Number mean: 0.00321401 max: 0.487591
+deltaT = 0.000671131
+Time = 0.491275
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 367
+isoAdvection: Before conservative bounding: min(alpha) = -0.0168399, max(alpha) = 1 + 6.50593e-10
+isoAdvection: After conservative bounding: min(alpha) = -7.07058e-08, max(alpha) = 1 + 6.50593e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0269217, Final residual = 0.000369117, No Iterations 1
+time step continuity errors : sum local = 0.000185171, global = 2.14877e-05, cumulative = 5.58125e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000414705, Final residual = 1.62749e-05, No Iterations 3
+time step continuity errors : sum local = 8.17245e-06, global = -1.82058e-06, cumulative = 5.39919e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.65906e-05, Final residual = 9.21932e-08, No Iterations 52
+time step continuity errors : sum local = 4.63134e-08, global = 4.88773e-09, cumulative = 5.39968e-05
+ExecutionTime = 29.24 s  ClockTime = 29 s
+
+Courant Number mean: 0.109554 max: 0.709017
+Interface Courant Number mean: 0.00329322 max: 0.486583
+deltaT = 0.000671131
+Time = 0.491946
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 377
+isoAdvection: Before conservative bounding: min(alpha) = -0.0528455, max(alpha) = 1 + 0.00690363
+isoAdvection: After conservative bounding: min(alpha) = -1.52799e-07, max(alpha) = 1 + 1.43449e-09
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0265943, Final residual = 0.000358718, No Iterations 1
+time step continuity errors : sum local = 0.000175514, global = 2.27647e-05, cumulative = 7.67614e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000444815, Final residual = 1.96908e-05, No Iterations 3
+time step continuity errors : sum local = 9.64011e-06, global = -1.284e-06, cumulative = 7.54775e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.94388e-05, Final residual = 8.82962e-08, No Iterations 45
+time step continuity errors : sum local = 4.32402e-08, global = 5.82676e-09, cumulative = 7.54833e-05
+ExecutionTime = 29.32 s  ClockTime = 29 s
+
+Courant Number mean: 0.109483 max: 0.714461
+Interface Courant Number mean: 0.0032238 max: 0.483564
+deltaT = 0.000671131
+Time = 0.492618
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 372
+isoAdvection: Before conservative bounding: min(alpha) = -0.000459986, max(alpha) = 1 + 0.0003006
+isoAdvection: After conservative bounding: min(alpha) = -2.16193e-07, max(alpha) = 1 + 4.94091e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0261814, Final residual = 0.000346728, No Iterations 1
+time step continuity errors : sum local = 0.000167647, global = 1.06484e-05, cumulative = 8.61317e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000388099, Final residual = 1.41811e-05, No Iterations 3
+time step continuity errors : sum local = 6.85026e-06, global = -2.89365e-06, cumulative = 8.3238e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.36654e-05, Final residual = 9.20624e-08, No Iterations 51
+time step continuity errors : sum local = 4.45126e-08, global = 1.62746e-08, cumulative = 8.32543e-05
+ExecutionTime = 29.4 s  ClockTime = 29 s
+
+Courant Number mean: 0.10952 max: 0.719482
+Interface Courant Number mean: 0.00330259 max: 0.49544
+deltaT = 0.000671131
+Time = 0.493289
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 378
+isoAdvection: Before conservative bounding: min(alpha) = -0.0509739, max(alpha) = 1 + 0.00718694
+isoAdvection: After conservative bounding: min(alpha) = -9.66105e-08, max(alpha) = 1 + 3.3573e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0272352, Final residual = 0.000354961, No Iterations 1
+time step continuity errors : sum local = 0.000171947, global = 4.24899e-06, cumulative = 8.75033e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000394122, Final residual = 1.46329e-05, No Iterations 3
+time step continuity errors : sum local = 7.08012e-06, global = -3.02932e-06, cumulative = 8.4474e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.32114e-05, Final residual = 7.15065e-08, No Iterations 52
+time step continuity errors : sum local = 3.46363e-08, global = 6.29857e-09, cumulative = 8.44803e-05
+ExecutionTime = 29.48 s  ClockTime = 29 s
+
+Courant Number mean: 0.109552 max: 0.724146
+Interface Courant Number mean: 0.00336425 max: 0.500529
+deltaT = 0.000671131
+Time = 0.49396
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 370
+isoAdvection: Before conservative bounding: min(alpha) = -8.04464e-05, max(alpha) = 1 + 0.000112519
+isoAdvection: After conservative bounding: min(alpha) = -8.75258e-09, max(alpha) = 1 + 3.38408e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0278747, Final residual = 0.000388481, No Iterations 1
+time step continuity errors : sum local = 0.000188261, global = 2.53652e-06, cumulative = 8.70168e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000443474, Final residual = 1.72457e-05, No Iterations 3
+time step continuity errors : sum local = 8.36345e-06, global = -3.31214e-06, cumulative = 8.37046e-05
+GAMG:  Solving for p_rgh, Initial residual = 5.18196e-05, Final residual = 8.96147e-08, No Iterations 59
+time step continuity errors : sum local = 4.35093e-08, global = 7.54953e-09, cumulative = 8.37122e-05
+ExecutionTime = 29.58 s  ClockTime = 29 s
+
+Courant Number mean: 0.109634 max: 0.728473
+Interface Courant Number mean: 0.0033704 max: 0.493195
+deltaT = 0.000671131
+Time = 0.494631
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 377
+isoAdvection: Before conservative bounding: min(alpha) = -0.0256091, max(alpha) = 1 + 0.0124162
+isoAdvection: After conservative bounding: min(alpha) = -2.10245e-07, max(alpha) = 1 + 6.47475e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0275257, Final residual = 0.000475571, No Iterations 1
+time step continuity errors : sum local = 0.000231526, global = 1.4334e-06, cumulative = 8.51456e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000527712, Final residual = 2.3315e-05, No Iterations 3
+time step continuity errors : sum local = 1.13739e-05, global = -3.7559e-06, cumulative = 8.13897e-05
+GAMG:  Solving for p_rgh, Initial residual = 6.09845e-05, Final residual = 9.69151e-08, No Iterations 61
+time step continuity errors : sum local = 4.73343e-08, global = 8.36969e-09, cumulative = 8.13981e-05
+ExecutionTime = 29.67 s  ClockTime = 29 s
+
+Courant Number mean: 0.109635 max: 0.732469
+Interface Courant Number mean: 0.00330616 max: 0.526281
+deltaT = 0.000671131
+Time = 0.495302
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 371
+isoAdvection: Before conservative bounding: min(alpha) = -0.00212751, max(alpha) = 1 + 0.00584603
+isoAdvection: After conservative bounding: min(alpha) = -4.70784e-08, max(alpha) = 1 + 9.37272e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0276541, Final residual = 0.000617776, No Iterations 1
+time step continuity errors : sum local = 0.000302656, global = -2.50208e-07, cumulative = 8.11479e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.00066401, Final residual = 1.70019e-05, No Iterations 4
+time step continuity errors : sum local = 8.33214e-06, global = -3.42282e-06, cumulative = 7.7725e-05
+GAMG:  Solving for p_rgh, Initial residual = 7.27885e-05, Final residual = 8.59392e-08, No Iterations 64
+time step continuity errors : sum local = 4.217e-08, global = -1.49734e-09, cumulative = 7.77235e-05
+ExecutionTime = 29.77 s  ClockTime = 30 s
+
+Courant Number mean: 0.109651 max: 0.736178
+Interface Courant Number mean: 0.00328563 max: 0.518923
+deltaT = 0.000671131
+Time = 0.495973
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 374
+isoAdvection: Before conservative bounding: min(alpha) = -0.00975451, max(alpha) = 1 + 0.189047
+isoAdvection: After conservative bounding: min(alpha) = -1.13064e-07, max(alpha) = 1 + 3.84522e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0272141, Final residual = 0.000596214, No Iterations 1
+time step continuity errors : sum local = 0.00028343, global = -2.55594e-06, cumulative = 7.51676e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.00067646, Final residual = 1.33121e-05, No Iterations 4
+time step continuity errors : sum local = 6.34374e-06, global = -3.21093e-06, cumulative = 7.19567e-05
+GAMG:  Solving for p_rgh, Initial residual = 7.67227e-05, Final residual = 8.87461e-08, No Iterations 64
+time step continuity errors : sum local = 4.2344e-08, global = 2.08389e-08, cumulative = 7.19775e-05
+ExecutionTime = 29.86 s  ClockTime = 30 s
+
+Courant Number mean: 0.109629 max: 0.739617
+Interface Courant Number mean: 0.00330804 max: 0.52496
+deltaT = 0.000671131
+Time = 0.496644
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 373
+isoAdvection: Before conservative bounding: min(alpha) = -0.00329699, max(alpha) = 1 + 0.0318541
+isoAdvection: After conservative bounding: min(alpha) = -4.00125e-08, max(alpha) = 1 + 1.15739e-09
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0279977, Final residual = 0.000440327, No Iterations 1
+time step continuity errors : sum local = 0.000211553, global = -5.09898e-06, cumulative = 6.68785e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000490601, Final residual = 1.51421e-05, No Iterations 3
+time step continuity errors : sum local = 7.27289e-06, global = -3.57704e-06, cumulative = 6.33015e-05
+GAMG:  Solving for p_rgh, Initial residual = 5.05319e-05, Final residual = 7.94274e-08, No Iterations 66
+time step continuity errors : sum local = 3.82022e-08, global = 6.08911e-09, cumulative = 6.33076e-05
+ExecutionTime = 29.96 s  ClockTime = 30 s
+
+Courant Number mean: 0.109654 max: 0.742782
+Interface Courant Number mean: 0.00338124 max: 0.478537
+deltaT = 0.000671131
+Time = 0.497315
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 370
+isoAdvection: Before conservative bounding: min(alpha) = -0.022701, max(alpha) = 1 + 0.000687038
+isoAdvection: After conservative bounding: min(alpha) = -1.04378e-07, max(alpha) = 1 + 2.33106e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0282642, Final residual = 0.000421135, No Iterations 1
+time step continuity errors : sum local = 0.000206453, global = -6.8864e-06, cumulative = 5.64212e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000462301, Final residual = 1.37615e-05, No Iterations 3
+time step continuity errors : sum local = 6.74993e-06, global = -3.70625e-06, cumulative = 5.27149e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.69922e-05, Final residual = 9.26232e-08, No Iterations 68
+time step continuity errors : sum local = 4.55016e-08, global = 1.29274e-09, cumulative = 5.27162e-05
+ExecutionTime = 30.06 s  ClockTime = 30 s
+
+Courant Number mean: 0.109691 max: 0.74572
+Interface Courant Number mean: 0.00336896 max: 0.506817
+deltaT = 0.000671131
+Time = 0.497987
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 372
+isoAdvection: Before conservative bounding: min(alpha) = -0.0607974, max(alpha) = 1 + 0.00189482
+isoAdvection: After conservative bounding: min(alpha) = -4.38429e-08, max(alpha) = 1 + 7.71737e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0284552, Final residual = 0.000398806, No Iterations 1
+time step continuity errors : sum local = 0.000192895, global = -9.13131e-06, cumulative = 4.35849e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000437824, Final residual = 1.27459e-05, No Iterations 3
+time step continuity errors : sum local = 6.16738e-06, global = -3.52648e-06, cumulative = 4.00584e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.21303e-05, Final residual = 7.87541e-08, No Iterations 79
+time step continuity errors : sum local = 3.81748e-08, global = 5.28759e-09, cumulative = 4.00637e-05
+ExecutionTime = 30.18 s  ClockTime = 30 s
+
+Courant Number mean: 0.109667 max: 0.748502
+Interface Courant Number mean: 0.00343527 max: 0.519948
+deltaT = 0.000671131
+Time = 0.498658
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 374
+isoAdvection: Before conservative bounding: min(alpha) = -0.000579595, max(alpha) = 1 + 0.0273078
+isoAdvection: After conservative bounding: min(alpha) = -1.32378e-07, max(alpha) = 1 + 1.66789e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0289819, Final residual = 0.000407319, No Iterations 1
+time step continuity errors : sum local = 0.000193585, global = -9.19917e-06, cumulative = 3.08646e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.00044749, Final residual = 1.32155e-05, No Iterations 3
+time step continuity errors : sum local = 6.29003e-06, global = -3.49739e-06, cumulative = 2.73672e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.33549e-05, Final residual = 8.1952e-08, No Iterations 75
+time step continuity errors : sum local = 3.9074e-08, global = 5.19023e-09, cumulative = 2.73723e-05
+ExecutionTime = 30.29 s  ClockTime = 30 s
+
+Courant Number mean: 0.109674 max: 0.751099
+Interface Courant Number mean: 0.00344665 max: 0.506841
+deltaT = 0.000671131
+Time = 0.499329
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 376
+isoAdvection: Before conservative bounding: min(alpha) = -0.00512565, max(alpha) = 1 + 0.00134775
+isoAdvection: After conservative bounding: min(alpha) = -2.8398e-08, max(alpha) = 1 + 6.56482e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0284613, Final residual = 0.000375348, No Iterations 1
+time step continuity errors : sum local = 0.000181068, global = -7.75612e-06, cumulative = 1.96162e-05
+GAMG:  Solving for p_rgh, Initial residual = 0.000417584, Final residual = 1.19375e-05, No Iterations 3
+time step continuity errors : sum local = 5.76746e-06, global = -3.10741e-06, cumulative = 1.65088e-05
+GAMG:  Solving for p_rgh, Initial residual = 4.14621e-05, Final residual = 8.85474e-08, No Iterations 72
+time step continuity errors : sum local = 4.28436e-08, global = 4.34387e-09, cumulative = 1.65132e-05
+ExecutionTime = 30.39 s  ClockTime = 30 s
+
+Courant Number mean: 0.109683 max: 0.753527
+Interface Courant Number mean: 0.00342767 max: 0.515923
+deltaT = 0.000671131
+Time = 0.5
+
+PIMPLE: iteration 1
+Number of isoAdvector surface cells = 383
+isoAdvection: Before conservative bounding: min(alpha) = -0.0581654, max(alpha) = 1 + 0.00037023
+isoAdvection: After conservative bounding: min(alpha) = -1.13867e-07, max(alpha) = 1 + 7.05291e-10
+isoAdvection: time consumption = 9%
+Phase-1 volume fraction = 0.123667  Min(alpha.water) = 0  Max(alpha.water) = 1
+GAMG:  Solving for p_rgh, Initial residual = 0.0284132, Final residual = 0.000373438, No Iterations 1
+time step continuity errors : sum local = 0.000185056, global = -7.28777e-06, cumulative = 9.22539e-06
+GAMG:  Solving for p_rgh, Initial residual = 0.000416625, Final residual = 1.13565e-05, No Iterations 3
+time step continuity errors : sum local = 5.63002e-06, global = -2.91307e-06, cumulative = 6.31232e-06
+
+

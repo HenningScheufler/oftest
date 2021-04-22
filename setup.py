@@ -23,7 +23,7 @@ def read(*names, **kwargs):
 
 setup(
     name='oftest',
-    version='0.0.0',
+    version='0.0.1',
     license='BSD-2-Clause',
     description='test framework for OpenFOAM',
     long_description='%s\n%s' % (
@@ -40,7 +40,7 @@ setup(
     zip_safe=False,
     classifiers=[
         # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: Unix',
@@ -70,17 +70,15 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     python_requires='>=3.6',
-    install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
-    ],
+    install_requires=['pandas>=0.21.0','pyfoam>=0.6.8','pytest>=6.0.0'],
     extras_require={
         # eg:
         #   'rst': ['docutils>=0.11'],
         #   ':python_version=="2.6"': ['argparse'],
-    },
-    entry_points={
-        'console_scripts': [
-            'oftest = oftest.cli:main',
-        ]
-    },
+    }
+    # entry_points={
+    #     'console_scripts': [
+    #         'oftest = oftest.cli:main',
+    #     ]
+    # },
 )

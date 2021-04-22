@@ -1,0 +1,152 @@
+PIMPLE: iteration 1
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48431229  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48431096  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+smoothSolver:  Solving for T, Initial residual = 0.00023755113, Final residual = 8.7913757e-10, No Iterations 2
+GAMG:  Solving for p_rgh, Initial residual = 0.0056612767, Final residual = 4.7130131e-05, No Iterations 1
+GAMGPCG:  Solving for p_rgh, Initial residual = 8.3197383e-05, Final residual = 8.429413e-09, No Iterations 3
+ExecutionTime = 12.65 s  ClockTime = 12 s
+
+Courant Number mean: 0.045595231 max: 0.50295051
+Interface Courant Number mean: 0.0022752167 max: 0.20822232
+deltaT = 0.00015298137
+Time = 0.1055635403
+
+PIMPLE: iteration 1
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 0
+Phase-1 volume fraction = 0.48431037  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 0
+Phase-1 volume fraction = 0.48430928  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+smoothSolver:  Solving for T, Initial residual = 0.00024430226, Final residual = 9.0878737e-10, No Iterations 2
+GAMG:  Solving for p_rgh, Initial residual = 0.0054150074, Final residual = 4.1913936e-05, No Iterations 1
+GAMGPCG:  Solving for p_rgh, Initial residual = 8.1229093e-05, Final residual = 9.0991864e-09, No Iterations 3
+ExecutionTime = 12.72 s  ClockTime = 12 s
+
+Courant Number mean: 0.045479491 max: 0.51641192
+Interface Courant Number mean: 0.0021976894 max: 0.21915631
+deltaT = 0.00014788199
+Time = 0.1057114223
+
+PIMPLE: iteration 1
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48430869  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48430756  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+smoothSolver:  Solving for T, Initial residual = 0.00025920048, Final residual = 9.183894e-10, No Iterations 2
+GAMG:  Solving for p_rgh, Initial residual = 0.0050537537, Final residual = 4.1670069e-05, No Iterations 1
+GAMGPCG:  Solving for p_rgh, Initial residual = 9.6835568e-05, Final residual = 6.5704128e-09, No Iterations 3
+ExecutionTime = 12.77 s  ClockTime = 13 s
+
+Courant Number mean: 0.043821141 max: 0.54551942
+Interface Courant Number mean: 0.0020344432 max: 0.20831756
+deltaT = 0.00013401805
+Time = 0.1058454404
+
+PIMPLE: iteration 1
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.484307  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48430597  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+smoothSolver:  Solving for T, Initial residual = 0.00028171663, Final residual = 6.3766686e-10, No Iterations 2
+GAMG:  Solving for p_rgh, Initial residual = 0.0043971527, Final residual = 4.3648548e-06, No Iterations 2
+GAMGPCG:  Solving for p_rgh, Initial residual = 9.9153509e-05, Final residual = 6.2131122e-08, No Iterations 2
+ExecutionTime = 12.81 s  ClockTime = 13 s
+
+
+    From virtual bool Foam::regIOobject::readIfModified()
+    in file db/regIOobject/regIOobjectRead.C at line 282
+        Re-reading object fvSchemes from file "/media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/tutorials/multiphase/compressibleInterIsoFoam/laminar/depthCharge2D/system/fvSchemes"
+Courant Number mean: 0.039537554 max: 0.49563899
+Interface Courant Number mean: 0.0019434943 max: 0.23022376
+deltaT = 0.00013401805
+Time = 0.1059794584
+
+PIMPLE: iteration 1
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48430458  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+isoAdvection: After conservative bounding: min(alpha) = 0, max(alpha) = 1 + 2.220446e-16
+Phase-1 volume fraction = 0.48430258  Min(alpha.water) = 0  Max(alpha.water) - 1 = 0
+
+
+--> FOAM FATAL IO ERROR: (openfoam-2012)
+Unknown discretisation type upwindasdasd
+
+Valid discretisation types :
+
+63
+(
+CoBlended
+Gamma
+GammaV
+LUST
+MUSCL
+MUSCLV
+Minmod
+MinmodV
+OSPRE
+OSPREV
+Phi
+QUICK
+QUICKV
+SFCD
+SFCDV
+SuperBee
+SuperBeeV
+UMIST
+UMISTV
+biLinearFit
+blended
+cellCoBlended
+clippedLinear
+cubic
+cubicUpwindFit
+deferredCorrection
+downwind
+filteredLinear
+filteredLinear2
+filteredLinear2V
+filteredLinear3
+filteredLinear3V
+fixedBlended
+limitWith
+limitedCubic
+limitedCubicV
+limitedLinear
+limitedLinearV
+limiterBlended
+linear
+linearFit
+linearPureUpwindFit
+linearUpwind
+linearUpwindV
+localBlended
+localMax
+localMin
+midPoint
+outletStabilised
+pointLinear
+quadraticFit
+quadraticLinearFit
+quadraticLinearUpwindFit
+quadraticUpwindFit
+reverseLinear
+skewCorrected
+upwind
+vanAlbada
+vanAlbadaV
+vanLeer
+vanLeerV
+weighted
+weightedFlux
+)
+
+
+
+file: /media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/tutorials/multiphase/compressibleInterIsoFoam/laminar/depthCharge2D/system/fvSchemes.divSchemes.div(rhoPhi,U) at line 35.
+
+    From static Foam::tmp<Foam::surfaceInterpolationScheme<Type> > Foam::surfaceInterpolationScheme<Type>::New(const Foam::fvMesh&, const surfaceScalarField&, Foam::Istream&) [with Type = Foam::Vector<double>; Foam::surfaceScalarField = Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh>]
+    in file lnInclude/surfaceInterpolationScheme.C at line 114.
+
+FOAM exiting
+

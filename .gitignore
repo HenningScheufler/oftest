@@ -1,8 +1,10 @@
 *.py[cod]
 __pycache__
+env
 
 # C extensions
 *.so
+tutorials_of2012
 
 # Packages
 *.egg
@@ -72,3 +74,7 @@ docs/_build
 
 # Mypy Cache
 .mypy_cache/
+
+# openfoam
+lnInclude
+linux64*

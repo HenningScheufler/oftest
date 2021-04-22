@@ -105,3 +105,12 @@ Note, to combine the coverage data from all the tox environments run:
       - ::
 
             PYTEST_ADDOPTS=--cov-append tox
+
+
+
+Usage
+=====
+
+py.test tutorials_of2012/*  --collect-only --cache-clear --import-mode=importlib
+
+py.test tutorials_of2012/*  --collect-only --cache-clear --import-mode=importlib

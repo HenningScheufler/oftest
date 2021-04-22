@@ -1,0 +1,534 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 257830ca-20210303 OPENFOAM=2012
+Arch   : "LSB;label=32;scalar=64"
+Exec   : rhoPimpleFoam
+Date   : Apr 19 2021
+Time   : 21:53:56
+Host   : henning-AB350M-HD3
+PID    : 24647
+I/O    : uncollated
+Case   : /media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/tutorials/compressible/rhoPimpleFoam/laminar/sineWaveDamping
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+PIMPLE: no residual control data found. Calculations will employ 7 corrector loops
+
+Reading thermophysical properties
+
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       sutherland;
+    thermo          hConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+--> FOAM Warning : 
+    From Foam::pressureControl::pressureControl(const volScalarField&, const volScalarField&, const Foam::dictionary&, bool)
+    in file cfdTools/general/pressureControl/pressureControl.C at line 123
+    Reading "/media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/tutorials/compressible/rhoPimpleFoam/laminar/sineWaveDamping/system/fvSolution.PIMPLE" at line 58 to 61
+    'rhoMax' specified rather than 'pMax' or 'pMaxFactor'
+    This is supported for backward-compatibility but 'pMax' or 'pMaxFactor' are more reliable.
+pressureControl
+    pMax -101325
+
+Creating turbulence model
+
+Selecting turbulence model type laminar
+Selecting laminar stress model Stokes
+Creating field dpdt
+
+Creating field kinetic energy K
+
+No MRF models present
+
+Creating finite volume options from "system/fvOptions"
+
+Selecting finite volume options type acousticDampingSource
+    Source: acousticDampingSource
+    - selecting all cells
+    - selected 1000 cell(s) with volume 0.001000000000000003
+Courant Number mean: 0 max: -0
+
+Starting time loop
+
+fieldAverage fieldAverage:
+    Restarting averaging for fields:
+        U: starting averaging at time 0
+        p: starting averaging at time 0
+
+Courant Number mean: 0 max: -0
+Time = 2e-06
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.9999999933614392, Final residual = 2.536457181196321e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.006527610296679518, Final residual = 0.005102399131085554, No Iterations 1000
+DICPCG:  Solving for p, Initial residual = 0.9999999999996234, Final residual = 3.06143161780089e-18, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002000361656385361, global = -0.0002000361656385361, cumulative = -0.0002000361656385361
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.04546677813207464, Final residual = 5.43061965280026e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.9999999999954479, Final residual = 2.798581146591796e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.9999999999993706, Final residual = 3.62695774428658e-18, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100197671751014e-08, global = -3.100197671524093e-08, cumulative = -0.0002000671676152514
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.05002327966021697, Final residual = 9.162848786947169e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.4551143168700683, Final residual = 2.615042525812055e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1209085286823907, Final residual = 2.07388554771729e-18, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100140972129686e-08, global = -3.100140972054049e-08, cumulative = -0.0002000981690249719
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.001538319843142973, Final residual = 3.22260046277343e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.3370118690795047, Final residual = 1.036811294542379e-06, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02597588813265942, Final residual = 1.11590366938353e-18, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100128822768233e-08, global = -3.100128822579142e-08, cumulative = -0.0002001291703131977
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.0005007655603969887, Final residual = 9.987426421258498e-12, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.05190362532625593, Final residual = 2.38552007643324e-07, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.007329753773817675, Final residual = 1.829082172607737e-19, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100124960190054e-08, global = -3.1001249600766e-08, cumulative = -0.0002001601715627985
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.0001457894530122292, Final residual = 3.014612636391391e-12, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01378538910839264, Final residual = 9.571612327943875e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.002206054015484845, Final residual = 1.724223550730234e-19, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100123849937708e-08, global = -3.100123849786435e-08, cumulative = -0.0002001911728012963
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 4.226612023422963e-05, Final residual = 8.475299582655936e-13, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.00402585943990542, Final residual = 1.292713859741032e-12, No Iterations 2
+DICPCG:  Solving for p, Initial residual = 0.0006841016573978126, Final residual = 4.700760865039522e-20, No Iterations 1
+pressureControl: p max 101326.8845091335
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -3.100123542288729e-08, global = -3.100123542213093e-08, cumulative = -0.0002002221740367184
+ExecutionTime = 0.07000000000000001 s  ClockTime = 0 s
+
+fieldAverage fieldAverage:
+    Reading/initialising field UMean
+    Reading/initialising field pMean
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.000118876070925412 max: -4.690924362111705e-30
+Time = 4e-06
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.1876725207343508, Final residual = 2.983940778576289e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.2214935501752948, Final residual = 5.045870740395426e-07, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.2231652391805771, Final residual = 7.256323899659989e-22, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.665532822713673e-06, global = -9.665532822564193e-06, cumulative = -0.0002098877068592826
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.01195081822508778, Final residual = 7.519145330120422e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.1593443424770419, Final residual = 2.209223134668016e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01506010998729241, Final residual = 1.249427324820191e-21, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.903053855838316e-05, global = -2.903053855822517e-05, cumulative = -0.0002389182454175078
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.00152249163473298, Final residual = 5.618415638627144e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01944135389444472, Final residual = 2.758998699257997e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01367071081641601, Final residual = 1.146376311952303e-19, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.916669084332039e-05, global = -2.91666908431713e-05, cumulative = -0.0002680849362606791
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.001118216822381943, Final residual = 1.247516210203699e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.004617345784407558, Final residual = 8.021134964649276e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01361866487795017, Final residual = 1.828199337725454e-18, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.917054730722205e-05, global = -2.917054730706375e-05, cumulative = -0.0002972554835677428
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.001122973534020965, Final residual = 9.112021696896296e-12, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.001399223551459644, Final residual = 2.311392398885642e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01360850157497534, Final residual = 1.827700977486302e-18, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.916614516909628e-05, global = -2.916614516894447e-05, cumulative = -0.0003264216287366873
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.001117745545158785, Final residual = 8.759473434663401e-12, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0003769452103609708, Final residual = 5.26675668491944e-12, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01360540255910265, Final residual = 5.262178121048679e-20, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.916528482589305e-05, global = -2.916528482573622e-05, cumulative = -0.0003555869135624235
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.001118139929895164, Final residual = 8.729943735504691e-12, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0001090807511142487, Final residual = 1.609904610686668e-12, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.01360463368592316, Final residual = 5.262520737460848e-20, No Iterations 1
+pressureControl: p max 101328.7663402764
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.916500102440966e-05, global = -2.916500102425372e-05, cumulative = -0.0003847519145866772
+ExecutionTime = 0.08 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.0001519209939847384 max: -9.033310783439636e-25
+Time = 6e-06
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.1151472542825986, Final residual = 1.873144504987886e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.7602449071785604, Final residual = 1.698665120683566e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1630597206538099, Final residual = 7.810791447352499e-19, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.615652094533993e-05, global = -9.615652094516047e-05, cumulative = -0.0004809084355318377
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.003101714711088786, Final residual = 1.867025526520366e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.04942699803377997, Final residual = 4.614411705141984e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0303848823648289, Final residual = 1.649010551662312e-18, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.581513602038516e-05, global = -9.581513602027068e-05, cumulative = -0.0005767235715521084
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.003308084918727418, Final residual = 2.303577638360109e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0201930373013321, Final residual = 1.186332868146729e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0278273967571959, Final residual = 4.502566427142728e-18, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.690555443055741e-05, global = -9.690555443043717e-05, cumulative = -0.0006736291259825456
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.002689136290312984, Final residual = 7.75796054358573e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.004096425918215447, Final residual = 2.068555030220607e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02722998107178182, Final residual = 2.565810412903375e-19, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.682184426183441e-05, global = -9.682184426171569e-05, cumulative = -0.0007704509702442612
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.002349974583282452, Final residual = 5.073250946454781e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.001226014394606716, Final residual = 4.873553906399707e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02703600822470911, Final residual = 3.043805692877668e-22, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.686111723820983e-05, global = -9.686111723809264e-05, cumulative = -0.0008673120874823539
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.002393183313364436, Final residual = 4.634975303667657e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0003010246090499165, Final residual = 7.771394408699353e-12, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02698490388479092, Final residual = 2.437998884430035e-21, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.68618459029382e-05, global = -9.686184590282407e-05, cumulative = -0.000964173933385178
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.002383918681059265, Final residual = 4.564777095236601e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 8.917007014378529e-05, Final residual = 2.73955639076096e-12, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02696964174233776, Final residual = 1.268563293753308e-19, No Iterations 1
+pressureControl: p max 101330.6428192437
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -9.68637678986601e-05, global = -9.686376789853794e-05, cumulative = -0.001061037701283716
+ExecutionTime = 0.09 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.0001847004855388219 max: -7.011057897279889e-23
+Time = 8e-06
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.0891219057617868, Final residual = 2.856498771758156e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.3578807235125349, Final residual = 1.159625100195897e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1270699735860292, Final residual = 7.040579494528935e-18, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001243427070548695, global = -0.0001243427070547224, cumulative = -0.001185380408338438
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.008132589947008469, Final residual = 7.812740824836522e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01448341535474402, Final residual = 1.089910006307703e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02817368223113175, Final residual = 3.445992001616952e-19, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001357108789088431, global = -0.0001357108789087109, cumulative = -0.001321091287247149
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.00360245896792622, Final residual = 3.511168335850544e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01191705080146439, Final residual = 1.088724209136939e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02667863897773867, Final residual = 3.426202596810647e-19, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001391710705340783, global = -0.0001391710705339404, cumulative = -0.00146026235778109
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.003119034457229498, Final residual = 1.612823960330448e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.002333615943618938, Final residual = 3.101703229614344e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02627554618407251, Final residual = 8.574233030008474e-20, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001384699063013981, global = -0.0001384699063012739, cumulative = -0.001598732264082363
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.002410979667637212, Final residual = 1.006201975288149e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0008483991899382974, Final residual = 7.500967651986527e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02614175505764782, Final residual = 2.545878836345891e-19, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001386975192354056, global = -0.0001386975192352655, cumulative = -0.001737429783317629
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.002382398549793072, Final residual = 8.641872123419754e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0001794124065102184, Final residual = 2.267134851349334e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02611024916104173, Final residual = 1.72292527872447e-19, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001386478983090674, global = -0.000138647898308941, cumulative = -0.00187607768162657
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.002311591061107205, Final residual = 8.207855507671484e-11, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 6.35221975714364e-05, Final residual = 5.476126733291926e-12, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02609943909658742, Final residual = 3.42091796548385e-19, No Iterations 1
+pressureControl: p max 101332.511279456
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001386641388921386, global = -0.000138664138891997, cumulative = -0.002014741820518567
+ExecutionTime = 0.1 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.0002058730510027497 max: -9.167568366259446e-23
+Time = 1e-05
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.07508646326516197, Final residual = 3.056642247781293e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.2198578996605299, Final residual = 1.238350263289129e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1100003015105221, Final residual = 1.451562669800786e-17, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001978021178889395, global = -0.0001978021178887906, cumulative = -0.002212543938407357
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.01846662911680887, Final residual = 1.297574412742912e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.04329685570570065, Final residual = 1.017064306304621e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02734352582297581, Final residual = 5.358082538646931e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001786857906436214, global = -0.0001786857906434873, cumulative = -0.002391229729050845
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.007684007638745575, Final residual = 7.90292948904928e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.02197381817960251, Final residual = 2.389151278105935e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02670652344585281, Final residual = 1.864510141742862e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001951116332151431, global = -0.0001951116332150107, cumulative = -0.002586341362265856
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.005585290607333547, Final residual = 3.978617083366833e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.008749188495299669, Final residual = 9.500363936388531e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02597154484574368, Final residual = 1.261973670205997e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.00018795688089331, global = -0.0001879568808931764, cumulative = -0.002774298243159032
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.003082568471652384, Final residual = 2.238315731953423e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.00376811891604322, Final residual = 4.027889737653147e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02603559836574915, Final residual = 1.24729890050285e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001909516872176187, global = -0.0001909516872174859, cumulative = -0.002965249930376518
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.002803104160767326, Final residual = 1.649378616679953e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.001558586456603813, Final residual = 1.704983419290999e-10, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02594071197907657, Final residual = 3.117991561200545e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001896946152057883, global = -0.0001896946152056553, cumulative = -0.003154944545582173
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.002360474916130232, Final residual = 1.323265674758273e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.0006614985573681633, Final residual = 7.089269046534899e-11, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02596068850965185, Final residual = 1.259574790873956e-19, No Iterations 1
+pressureControl: p max 101334.3690657293
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001902247463935029, global = -0.0001902247463933735, cumulative = -0.003345169291975547
+ExecutionTime = 0.11 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.000221266705326189 max: -1.021022717372286e-22
+Time = 1.2e-05
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.06559272599425067, Final residual = 2.630605218275964e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.1721504384574146, Final residual = 1.186861971711359e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.10133299832521, Final residual = 1.250445376809407e-17, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0003154924083362049, global = -0.0003154924083360692, cumulative = -0.003660661700311616
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.03176887840663224, Final residual = 1.341499463583595e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.07344871358268677, Final residual = 1.035835135532225e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02639381964457987, Final residual = 7.958057845649992e-19, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002004666079325443, global = -0.0002004666079323946, cumulative = -0.003861128308244011
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.01732474588877194, Final residual = 1.585042991236942e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.04838540218395548, Final residual = 5.490581306802626e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0306300948696656, Final residual = 3.828736454934904e-19, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002786169216840735, global = -0.0002786169216839228, cumulative = -0.004139745229927934
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.01439238281135637, Final residual = 8.63021905272526e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.03257692332033034, Final residual = 1.132668517406457e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02460332318280286, Final residual = 5.738794301885081e-19, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002245563770328283, global = -0.0002245563770326827, cumulative = -0.004364301606960616
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.00704694166849893, Final residual = 6.426144961813076e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01934001121289822, Final residual = 1.158964740742944e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02690524120686079, Final residual = 2.871210067854423e-19, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002548575474807179, global = -0.0002548575474805695, cumulative = -0.004619159154441186
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.006790513203400377, Final residual = 4.467292487659983e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.01201233078514774, Final residual = 5.178187909285841e-06, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02487320423178174, Final residual = 3.075091410683122e-18, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002355815761302915, global = -0.0002355815761301491, cumulative = -0.004854740730571335
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.003895666924609646, Final residual = 3.077557683852542e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.007371965834903143, Final residual = 2.643909317975518e-09, No Iterations 2
+DICPCG:  Solving for p, Initial residual = 0.02552842153911436, Final residual = 9.585341391742673e-20, No Iterations 1
+pressureControl: p max 101336.2135380475
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002471526691471214, global = -0.0002471526691469742, cumulative = -0.005101893399718309
+ExecutionTime = 0.12 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.0002336547729451022 max: -1.511410550029909e-22
+Time = 1.4e-05
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.05852833878520126, Final residual = 2.004582062131983e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.148121803351235, Final residual = 4.416726631077588e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.09778155768761476, Final residual = 8.336322409363916e-18, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0004961312023458996, global = -0.0004961312023457372, cumulative = -0.005598024602064046
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.04673788321250075, Final residual = 1.031200870960107e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.09992417922612899, Final residual = 5.535851982136026e-06, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02441338659413295, Final residual = 2.48864025427479e-18, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001800958839613235, global = -0.0001800958839611739, cumulative = -0.00577812048602522
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.03248542556542365, Final residual = 2.899350319214237e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.08987483793223018, Final residual = 1.080892010917205e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.04418968496960021, Final residual = 3.030341056508723e-21, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0004853898998492207, global = -0.0004853898998490693, cumulative = -0.00626351038587429
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.03963915752337642, Final residual = 1.186402738878196e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.09088116429484722, Final residual = 1.109810121162929e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0223526855335183, Final residual = 9.296440788691074e-19, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0001948111732598587, global = -0.0001948111732597082, cumulative = -0.006458321559133998
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.02747888728152681, Final residual = 2.345921372579523e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.07582321050635848, Final residual = 8.50523459751324e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0412008178178654, Final residual = 5.929035626788932e-19, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0004525216181964798, global = -0.0004525216181963294, cumulative = -0.006910843177330327
+PIMPLE: iteration 6
+smoothSolver:  Solving for Ux, Initial residual = 0.0335368449090916, Final residual = 1.133465471445964e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.07810864699678373, Final residual = 1.221876238504146e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.02211951300311525, Final residual = 7.504325194288905e-22, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0002068727447531041, global = -0.000206872744752957, cumulative = -0.007117715922083284
+PIMPLE: iteration 7
+smoothSolver:  Solving for Ux, Initial residual = 0.02351263933242733, Final residual = 1.900433717782276e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.06509498471219131, Final residual = 6.341573836665323e-11, No Iterations 3
+DICPCG:  Solving for p, Initial residual = 0.037865467907852, Final residual = 6.038291612411069e-19, No Iterations 1
+pressureControl: p max 101338.0420753145
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0004065033908652606, global = -0.0004065033908651122, cumulative = -0.007524219312948396
+ExecutionTime = 0.13 s  ClockTime = 0 s
+
+fieldAverage fieldAverage write:
+    Calculating averages
+
+Courant Number mean: -0.0002322436313071096 max: -2.113741783665101e-22
+Time = 1.6e-05
+
+PIMPLE: iteration 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+smoothSolver:  Solving for Ux, Initial residual = 0.05271262261340588, Final residual = 9.597178955157559e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.1302321715407525, Final residual = 1.584855626992502e-05, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1070357306579762, Final residual = 1.128813720397523e-17, No Iterations 1
+pressureControl: p max 101339.8520790788
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.0008789165733258186, global = -0.0008789165733256692, cumulative = -0.008403135886274065
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.06827617745612644, Final residual = 4.246420285825065e-10, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.1431939659085608, Final residual = 1.215082733744927e-07, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0153321901547518, Final residual = 2.368530974626028e-18, No Iterations 1
+pressureControl: p max 101339.8520790788
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.523368332286664e-07, global = -2.523368330720517e-07, cumulative = -0.008403388223107138
+PIMPLE: iteration 3
+smoothSolver:  Solving for Ux, Initial residual = 0.06245184808082765, Final residual = 5.268863894987175e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.1778297560420175, Final residual = 2.257625691780833e-08, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.1944447728668894, Final residual = 3.255252969786374e-20, No Iterations 1
+pressureControl: p max 101339.8520790788
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -0.003127437617269643, global = -0.003127437617269377, cumulative = -0.01153082584037652
+PIMPLE: iteration 4
+smoothSolver:  Solving for Ux, Initial residual = 0.2536845814631587, Final residual = 3.739865623525297e-09, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.4030875190721893, Final residual = 8.587789388618838e-09, No Iterations 1
+DICPCG:  Solving for p, Initial residual = 0.0293696859315199, Final residual = 3.079214975905147e-18, No Iterations 1
+pressureControl: p max 101339.8520790788
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = -2.523425959437335e-07, global = -2.523425957871207e-07, cumulative = -0.0115310781829723
+PIMPLE: iteration 5
+smoothSolver:  Solving for Ux, Initial residual = 0.121153638023872, Final residual = 1.709287106021306e-08, No Iterations 1
+smoothSolver:  Solving for h, Initial residual = 0.3374619410789942, Final residual = 6.94995106989495e-08, No Iterations 1
+#0  Foam::error::printStack(Foam::Ostream&) at ??:?
+#1  Foam::sigFpe::sigHandler(int) at ??:?
+#2  ? in /lib/x86_64-linux-gnu/libpthread.so.0
+#3  Foam::hePsiThermo<Foam::psiThermo, Foam::pureMixture<Foam::sutherlandTransport<Foam::species::thermo<Foam::hConstThermo<Foam::perfectGas<Foam::specie> >, Foam::sensibleEnthalpy> > > >::calculate(Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh>&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh>&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh>&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh>&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh>&, bool) at ??:?
+#4  Foam::hePsiThermo<Foam::psiThermo, Foam::pureMixture<Foam::sutherlandTransport<Foam::species::thermo<Foam::hConstThermo<Foam::perfectGas<Foam::specie> >, Foam::sensibleEnthalpy> > > >::correct() at ??:?
+#5  ? in /media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/platforms/linux64GccDPInt32Opt/bin/rhoPimpleFoam
+#6  __libc_start_main in /lib/x86_64-linux-gnu/libc.so.6
+#7  ? in /media/henning/ssd1linux/OpenFOAM/OpenFOAM-v2012/platforms/linux64GccDPInt32Opt/bin/rhoPimpleFoam
+Floating point exception (core dumped)
