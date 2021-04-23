@@ -2,7 +2,7 @@ import pytest
 import os
 from dataclasses import dataclass,field
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
-from typing import List, Tuple
+from typing import List, Tuple, Optional, Dict
 from shutil import copyfile
 
 
@@ -74,7 +74,7 @@ class Pyfoam_parser(Parser):
 
 
 class Case_modifiers:
-    def __init__(self,case_modifiers: dict,dir_name: str): #: list[Case_modifier]):
+    def __init__(self,case_modifiers: dict,dir_name: str,meta_data: Optional[dict] = {}): #: list[Case_modifier]):
         """[summary]
         dict format
         {
@@ -86,10 +86,15 @@ class Case_modifiers:
         """
         self.modifiers = case_modifiers
         self.dir_name = dir_name
-
+        self.meta_data = meta_data
+        if 'script' not in self.meta_data:
+            self.meta_data['script'] = 'Allrun -test'
 
     def __str__(self):
-        return str(self.modifiers)
+        out = str(self.modifiers)
+        if self.meta_data:
+            out += str(self.meta_data)
+        return out
 
     def add_mod(self,file_path,key,val):
         if file_path not in self.modifiers:
@@ -145,9 +150,13 @@ def run_case(request):
 
     c_mod.update_case()
 
-    os.system(f"{dir_name}/Allrun -test")
+    if c_mod.meta_data:
+        if "script" not in c_mod.meta_data:
+            c_mod.meta_data['script'] = 'Allrun -test'
+    os.system(f"{dir_name}/{c_mod.meta_data['script']}")
 
-    yield
+
+    yield c_mod
 
     c_mod.revert_change()
     # if not request.config.getoption("--no-Allclean"):
