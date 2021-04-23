@@ -23,8 +23,8 @@ def read(*names, **kwargs):
 
 setup(
     name='oftest',
-    version='0.0.2',
-    license='BSD-2-Clause',
+    version='0.0.3',
+    license='GPLv3',
     description='test framework for OpenFOAM',
     long_description='%s\n%s' % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
@@ -42,7 +42,7 @@ setup(
         # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Operating System :: Unix',
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
