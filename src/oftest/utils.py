@@ -129,7 +129,17 @@ class Case_modifiers:
     # def __del__(self):
         # pass
 
-
+def check_type(c_mod) -> Case_modifiers:
+    if not isinstance(c_mod, Case_modifiers):
+        try:
+            # can also be a tuple of length of
+            if len(c_mod) == 1:
+                c_mod = c_mod[0]
+            else:
+                TypeError("parameter needs to be a Case_modifiers not a tuple")
+        except:
+            raise TypeError("parameter needs to be a Case_modifiers")
+    return c_mod
 
 @pytest.fixture(scope="class")
 def run_case(request):
@@ -137,9 +147,7 @@ def run_case(request):
     dir_name = base_dir()
     c_mod = Case_modifiers({},dir_name)
     if mod_case:
-        if not isinstance(request.param, Case_modifiers):
-            raise TypeError("parameter needs to be a Case_modifiers")
-        c_mod = request.param
+        c_mod = check_type(request.param)
 
     nsteps = request.config.getoption("--writeNSteps")
     if nsteps:
