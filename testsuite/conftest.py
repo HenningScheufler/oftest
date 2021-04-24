@@ -6,5 +6,5 @@ import os
 #         "--writeNSteps", action='store_true', help="only perform one timestep",
 #     )
 #     parser.addoption(
-#         "--no-Allclean", action='store_false',default=True ,help="do not clean case after run"
+#         "--no-clean-up", action='store_false',default=True ,help="do not clean case after run"
 #     )

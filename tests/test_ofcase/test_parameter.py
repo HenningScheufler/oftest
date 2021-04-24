@@ -3,7 +3,10 @@ from os import path
 import pytest, os
 import oftest
 import time
+from oftest import run_reset_case
 from oftest import run_case
+from oftest import clean_case
+from oftest import modify_case
 
 
 @pytest.fixture()
@@ -26,16 +29,16 @@ def load_parser_fvSolution():
 
 class TestClass:
 
-    def test_completed(self,run_case):
+    def test_completed(self,run_reset_case):
         log = oftest.path_log()
         assert oftest.case_status(log) == 'completed'
 
-    # def test_completed(self,run_case):
+    # def test_completed(self,run_reset_case):
     #     time.sleep(10)
     #     assert True
 
 
-    def test_writeNow(self,run_case,load_parser_controlDict):
+    def test_writeNow(self,run_reset_case,load_parser_controlDict):
         parser = load_parser_controlDict
         assert parser.value("startFrom") == "latestTime"
         assert parser.value("stopAt") == "nextWrite"
@@ -43,8 +46,28 @@ class TestClass:
         assert parser.value("writeInterval") == 1
         # time.sleep(20)
 
-
 class TestClass2:
+
+    def test_completed(self,run_case):
+        log = oftest.path_log()
+        assert oftest.case_status(log) == 'completed'
+
+    def test_no_clean(self,run_case,load_parser_controlDict):
+        dir_name = path.dirname(path.abspath(__file__))
+        log_file = path.join(dir_name,'log.interIsoFoam')
+        assert os.path.exists(log_file)
+
+
+    def test_clean_case(self,clean_case,load_parser_controlDict):
+        dir_name = path.dirname(path.abspath(__file__))
+        log_file = path.join(dir_name,'log.interIsoFoam')
+        assert not os.path.exists(log_file)
+        # time.sleep(20)
+
+
+        # time.sleep(20)
+
+class TestClass3:
     file_mod1 =  { "constant/transportProperties": [ ("water/transportModel","unique-value-1"),
                                                     ("air/transportModel","unique-value-2") ] }
 
@@ -62,15 +85,15 @@ class TestClass2:
         assert not os.path.exists(log_file)
 
 
-    @pytest.mark.parametrize("run_case",[c1], indirect=True)
-    def test_para_transport(self,run_case,load_parser_transport):
+    @pytest.mark.parametrize("run_reset_case",[c1], indirect=True)
+    def test_para_transport(self,run_reset_case,load_parser_transport):
         par_Trans = load_parser_transport
         assert par_Trans.value("water/transportModel") == "unique-value-1"
         assert par_Trans.value("air/transportModel") == "unique-value-2"
 
 
-    @pytest.mark.parametrize("run_case",[c2], indirect=True)
-    def test_para_fvSolution(self,run_case,load_parser_fvSolution):
+    @pytest.mark.parametrize("run_reset_case",[c2], indirect=True)
+    def test_para_fvSolution(self,run_reset_case,load_parser_fvSolution):
         par_fvS = load_parser_fvSolution
         assert par_fvS.value("PIMPLE/momentumPredictor") == "unique-value-3"
         assert par_fvS.value("PIMPLE/nCorrectors") == "unique-value-4"
@@ -96,17 +119,15 @@ c2 = case_mods_transport(2)
 c3 = case_mods_fvSolution(3)
 c4 = case_mods_fvSolution(4)
 
-run_case2 = run_case # copy fixture
+# run_reset_case2 = run_reset_case # copy fixture
 
-@pytest.mark.parametrize("run_case",[(c1,),c2], indirect=['run_case'])
-@pytest.mark.parametrize("run_case2",[c3,c4], indirect=['run_case2'])
-def test_para_fvSolution(run_case,run_case2,load_parser_fvSolution,load_parser_transport):
+@pytest.mark.parametrize("run_reset_case",[c3,c4], indirect=['run_reset_case'])
+@pytest.mark.parametrize("modify_case",[c1,c2], indirect=['modify_case'])
+def test_para_fvSolution(run_reset_case,modify_case,load_parser_fvSolution,load_parser_transport):
     par_fvS = load_parser_fvSolution
     par_Trans = load_parser_transport
-    print(run_case)
-    print(run_case2)
-    assert par_Trans.value("water/transportModel") == run_case.modifiers["constant/transportProperties"][0][1]
-    assert par_Trans.value("air/transportModel") == run_case.modifiers["constant/transportProperties"][1][1]
-    assert par_fvS.value("PIMPLE/momentumPredictor") == run_case2.modifiers["system/fvSolution"][0][1]
-    assert par_fvS.value("PIMPLE/nCorrectors") == run_case2.modifiers["system/fvSolution"][1][1]
+    assert par_Trans.value("water/transportModel") == modify_case.modifiers["constant/transportProperties"][0][1]
+    assert par_Trans.value("air/transportModel") == modify_case.modifiers["constant/transportProperties"][1][1]
+    assert par_fvS.value("PIMPLE/momentumPredictor") == run_reset_case.modifiers["system/fvSolution"][0][1]
+    assert par_fvS.value("PIMPLE/nCorrectors") == run_reset_case.modifiers["system/fvSolution"][1][1]
 

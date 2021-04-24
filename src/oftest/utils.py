@@ -1,37 +1,37 @@
 import pytest
 import os
-from dataclasses import dataclass,field
+from dataclasses import dataclass, field
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 from typing import List, Tuple, Optional, Dict
 from shutil import copyfile
 
 
 def base_dir() -> str:
-    f_name = os.getenv('PYTEST_CURRENT_TEST').split('::')[0]
+    f_name = os.getenv("PYTEST_CURRENT_TEST").split("::")[0]
     dir_name = os.path.dirname(f_name)
     return dir_name
 
-def path_log(app_name : str="") -> str:
+
+def path_log(app_name: str = "") -> str:
     dir_name = base_dir()
     if app_name:
-        return os.path.join(dir_name,"log." + app_name)
+        return os.path.join(dir_name, "log." + app_name)
 
-    controlDict = os.path.join(dir_name,"system/controlDict")
+    controlDict = os.path.join(dir_name, "system/controlDict")
     p = Pyfoam_parser(controlDict)
     app_name = p.value("application")
 
-    return os.path.join(dir_name,"log." + app_name)
+    return os.path.join(dir_name, "log." + app_name)
 
 
 class Parser:
-
-    def __init__(self,filename):
+    def __init__(self, filename):
         self.filename = filename
 
-    def value(self,keyword):
+    def value(self, keyword):
         pass
 
-    def set(self,keyword):
+    def set(self, keyword):
         pass
 
     def writeFile(self):
@@ -39,13 +39,12 @@ class Parser:
 
 
 class Pyfoam_parser(Parser):
-
-    def __init__(self,filename):
+    def __init__(self, filename):
         self.filename = filename
         self._ppp = ParsedParameterFile(self.filename)
 
-    def _nested_get(self,dic, keyword):
-        key_list = keyword.split('/')
+    def _nested_get(self, dic, keyword):
+        key_list = keyword.split("/")
         key_list[:] = [x for x in key_list if x]
         if len(key_list) == 1:
             return dic[key_list[0]]
@@ -53,8 +52,8 @@ class Pyfoam_parser(Parser):
             dic = dic[key]
         return dic
 
-    def _nested_set(self,dic, keyword, value):
-        key_list = keyword.split('/')
+    def _nested_set(self, dic, keyword, value):
+        key_list = keyword.split("/")
         key_list[:] = [x for x in key_list if x]
         if len(key_list) == 1:
             dic[key_list[-1]] = value
@@ -63,18 +62,20 @@ class Pyfoam_parser(Parser):
             dic = dic.setdefault(key, {})
         dic[key_list[-1]] = value
 
-    def value(self,keyword):
-        return self._nested_get(self._ppp.content,keyword)
+    def value(self, keyword):
+        return self._nested_get(self._ppp.content, keyword)
 
-    def set(self,keyword,value):
-        self._nested_set(self._ppp.content,keyword,value)
+    def set(self, keyword, value):
+        self._nested_set(self._ppp.content, keyword, value)
 
     def writeFile(self):
         self._ppp.writeFile()
 
 
 class Case_modifiers:
-    def __init__(self,case_modifiers: dict,dir_name: str,meta_data: Optional[dict] = {}): #: list[Case_modifier]):
+    def __init__(
+        self, case_modifiers: dict, dir_name: str, meta_data: Optional[dict] = {}
+    ):
         """[summary]
         dict format
         {
@@ -87,8 +88,8 @@ class Case_modifiers:
         self.modifiers = case_modifiers
         self.dir_name = dir_name
         self.meta_data = meta_data
-        if 'script' not in self.meta_data:
-            self.meta_data['script'] = 'Allrun -test'
+        if "script" not in self.meta_data:
+            self.meta_data["script"] = "Allrun -test"
 
     def __str__(self):
         out = str(self.modifiers)
@@ -96,44 +97,49 @@ class Case_modifiers:
             out += str(self.meta_data)
         return out
 
-    def add_mod(self,file_path,key,val):
+    def add_mod(self, file_path, key, val):
         if file_path not in self.modifiers:
             self.modifiers[file_path] = []
-        self.modifiers[file_path].append((key,val))
+        self.modifiers[file_path].append((key, val))
 
     def update_case(self):
         """
-            update the based on the specified modifiers
+        update the based on the specified modifiers
         """
         for key in self.modifiers:
             bkp_file = key + ".orig"
 
-            bkp_path = os.path.join(self.dir_name,bkp_file)
-            file_path = os.path.join(self.dir_name,key)
+            bkp_path = os.path.join(self.dir_name, bkp_file)
+            file_path = os.path.join(self.dir_name, key)
             # backup file
-            copyfile(file_path, bkp_path)
+            if not os.path.isfile(bkp_path):
+                copyfile(file_path, bkp_path)
 
-            p = Pyfoam_parser(os.path.join(self.dir_name,key))
+            p = Pyfoam_parser(os.path.join(self.dir_name, key))
             for key_val in self.modifiers[key]:
-                p.set(key_val[0],key_val[1])
+                p.set(key_val[0], key_val[1])
             p.writeFile()
 
     def revert_change(self):
         for key in self.modifiers:
             bkp_file = key + ".orig"
 
-            bkp_path = os.path.join(self.dir_name,bkp_file)
-            file_path = os.path.join(self.dir_name,key)
-            copyfile(bkp_path,file_path)
+            bkp_path = os.path.join(self.dir_name, bkp_file)
+            file_path = os.path.join(self.dir_name, key)
+            if os.path.isfile(bkp_path):
+                copyfile(bkp_path, file_path)
+            else:
+                os.remove(bkp_path)
 
     # def __del__(self):
-        # pass
+    # pass
+
 
 def check_type(c_mod) -> Case_modifiers:
     if not isinstance(c_mod, Case_modifiers):
         try:
             # can also be a tuple of length of
-            if len(c_mod) == 1:
+            if len(c_mod) == 1:  # enables latter extension to multiple parameters
                 c_mod = c_mod[0]
             else:
                 TypeError("parameter needs to be a Case_modifiers not a tuple")
@@ -141,32 +147,93 @@ def check_type(c_mod) -> Case_modifiers:
             raise TypeError("parameter needs to be a Case_modifiers")
     return c_mod
 
+
 @pytest.fixture(scope="class")
 def run_case(request):
-    mod_case = hasattr(request,"param")
+    mod_case = hasattr(request, "param")
     dir_name = base_dir()
-    c_mod = Case_modifiers({},dir_name)
+    c_mod = Case_modifiers({}, dir_name)
     if mod_case:
         c_mod = check_type(request.param)
 
     nsteps = request.config.getoption("--writeNSteps")
     if nsteps:
-        c_mod.add_mod("system/controlDict","startFrom","latestTime")
-        c_mod.add_mod("system/controlDict","stopAt","nextWrite")
-        c_mod.add_mod("system/controlDict","writeControl","timeStep")
-        c_mod.add_mod("system/controlDict","writeInterval",nsteps)
+        c_mod.add_mod("system/controlDict", "startFrom", "latestTime")
+        c_mod.add_mod("system/controlDict", "stopAt", "nextWrite")
+        c_mod.add_mod("system/controlDict", "writeControl", "timeStep")
+        c_mod.add_mod("system/controlDict", "writeInterval", nsteps)
 
     c_mod.update_case()
 
     if c_mod.meta_data:
         if "script" not in c_mod.meta_data:
-            c_mod.meta_data['script'] = 'Allrun -test'
+            c_mod.meta_data["script"] = "Allrun -test"
     os.system(f"{dir_name}/{c_mod.meta_data['script']}")
 
+    yield c_mod
+
+
+@pytest.fixture(scope="class")
+def run_reset_case(request):
+    mod_case = hasattr(request, "param")
+    dir_name = base_dir()
+    c_mod = Case_modifiers({}, dir_name)
+    if mod_case:
+        c_mod = check_type(request.param)
+
+    nsteps = request.config.getoption("--writeNSteps")
+    if nsteps:
+        c_mod.add_mod("system/controlDict", "startFrom", "latestTime")
+        c_mod.add_mod("system/controlDict", "stopAt", "nextWrite")
+        c_mod.add_mod("system/controlDict", "writeControl", "timeStep")
+        c_mod.add_mod("system/controlDict", "writeInterval", nsteps)
+
+    c_mod.update_case()
+
+    if c_mod.meta_data:
+        if "script" not in c_mod.meta_data:
+            c_mod.meta_data["script"] = "Allrun -test"
+    os.system(f"{dir_name}/{c_mod.meta_data['script']}")
 
     yield c_mod
 
     c_mod.revert_change()
-    # if not request.config.getoption("--no-Allclean"):
-    os.system(f"{dir_name}/Allclean")
+    if request.config.getoption("--no-clean-up"):
+        os.system(f"{dir_name}/Allclean")
 
+
+@pytest.fixture(scope="class")
+def modify_case(request):
+    mod_case = hasattr(request, "param")
+    dir_name = base_dir()
+    c_mod = Case_modifiers({}, dir_name)
+    if mod_case:
+        c_mod = check_type(request.param)
+
+    nsteps = request.config.getoption("--writeNSteps")
+    if nsteps:
+        c_mod.add_mod("system/controlDict", "startFrom", "latestTime")
+        c_mod.add_mod("system/controlDict", "stopAt", "nextWrite")
+        c_mod.add_mod("system/controlDict", "writeControl", "timeStep")
+        c_mod.add_mod("system/controlDict", "writeInterval", nsteps)
+
+    c_mod.update_case()
+
+    yield c_mod
+
+    c_mod.revert_change()
+
+
+@pytest.fixture(scope="class")
+def clean_case(request):
+    mod_case = hasattr(request, "param")
+    dir_name = base_dir()
+    c_mod = Case_modifiers({}, dir_name)
+    if mod_case:
+        c_mod = check_type(request.param)
+
+    c_mod.revert_change()
+    if request.config.getoption("--no-clean-up"):
+        os.system(f"{dir_name}/Allclean")
+
+    yield c_mod

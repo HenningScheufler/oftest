@@ -100,7 +100,7 @@ cat conftest.py:
             "--writeNSteps", action="store", default=0, help="only perform specified number of timestep"
         )
         parser.addoption(
-            "--no-Allclean", action='store_false',default=True ,help="do not clean case after run"
+            "--no-clean-up", action='store_false',default=True ,help="do not clean case after run"
         )
 
 we assume that all OpenFOAM test are located in the tests folder and that each test can be started with a

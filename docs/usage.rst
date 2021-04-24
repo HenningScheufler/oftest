@@ -25,7 +25,7 @@ cat conftest.py:
 			"--writeNSteps", action="store", default=0, help="only perform specified number of timestep"
 		)
 		parser.addoption(
-			"--no-Allclean", action='store_false',default=True ,help="do not clean case after run"
+			"--no-clean-up", action='store_false',default=True ,help="do not clean case after run"
 		)
 
 we assume that all OpenFOAM tests are located in the tests folder and that each test can be started with a
@@ -91,9 +91,9 @@ add test_template.py with:
 	import os
 	import pytest
 	import oftest
-	from oftest import run_case
+	from oftest import run_reset_case
 
-	def test_completed(run_case):
+	def test_completed(run_reset_case):
 		log = oftest.path_log()
 		assert oftest.case_status(log) == 'completed' # checks if run completes
 
@@ -142,8 +142,8 @@ the parameters of a test case can be varied by decorating the function with:
 
 		mod_fvSolution = oftest.Case_modifiers(file_mod1,dir_name)
 
-		@pytest.mark.parametrize("run_case",[mod_fvSolution], indirect=True)
-		def test_parameter(self,run_case,load_parser_transport):
+		@pytest.mark.parametrize("run_reset_case",[mod_fvSolution], indirect=True)
+		def test_parameter(self,run_reset_case,load_parser_transport):
 			log = oftest.path_log()
 			assert oftest.case_status(log) == 'completed' # checks if run completes
 
