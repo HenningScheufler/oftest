@@ -2,6 +2,9 @@
 Usage
 =====
 
+
+quick start
+-----------
 add conftest.py and pytest.ini to your project
 
 cat pytest.ini:
@@ -43,13 +46,13 @@ with the command line option the test only run one time step
 	py.test --writeNSteps 1
 
 
-Running all OpenFOAM
---------------------
+Running all OpenFOAM tutorials
+------------------------------
 
 cp -r $FOAM_TUTORIALS OfTestTut
 cd OfTestTut
 
-add file add_tests.py with:
+add new file add_tests.py:
 
 ::
 
@@ -84,7 +87,7 @@ add file add_tests.py with:
 				copyfile(test_template, dst)
 
 
-add test_template.py with:
+add new test_template.py:
 
 ::
 
@@ -124,30 +127,42 @@ and finally a report
 .. image:: media/tut_of2012-report.png
   :width: 800
 
+Parameter studies
+-----------------
 
-Parameters
-----------
-
-the parameters of a test case can be varied by decorating the function with:
 
 ::
 
 
-	class TestClass2:
+	def case_mods_transport(val):
+		dir_name = os.path.dirname(os.path.abspath(__file__))
+		file_mod =  { "constant/transportProperties": [ ("water/transportModel",f"unique-value-{val}"),
+														("air/transportModel",f"unique-value-{val}") ] }
+		c = oftest.Case_modifiers(file_mod,dir_name)
+		return c
 
-		file_modification =  { "system/fvSolution": [ ("PIMPLE/momentumPredictor",1),
-													("PIMPLE/nCorrectors",2) ] }
+	def case_mods_fvSolution(val):
+		dir_name = os.path.dirname(os.path.abspath(__file__))
+		file_mod =  { "system/fvSolution": [ ("PIMPLE/momentumPredictor",f"unique-value-{val}"),
+											("PIMPLE/nCorrectors",f"unique-value-{val}") ] }
+		c = oftest.Case_modifiers(file_mod,dir_name)
+		return c
 
-		dir_name = os.path.dirname(os.path.abspath(__file__)) # path the test file
+	c1 = case_mods_transport(1)
+	c2 = case_mods_transport(2)
 
-		mod_fvSolution = oftest.Case_modifiers(file_mod1,dir_name)
+	c3 = case_mods_fvSolution(3)
+	c4 = case_mods_fvSolution(4)
 
-		@pytest.mark.parametrize("run_reset_case",[mod_fvSolution], indirect=True)
-		def test_parameter(self,run_reset_case,load_parser_transport):
-			log = oftest.path_log()
-			assert oftest.case_status(log) == 'completed' # checks if run completes
+	@pytest.mark.parametrize("run_reset_case",[c3,c4], indirect=['run_reset_case'])
+	@pytest.mark.parametrize("modify_case",[c1,c2], indirect=['modify_case'])
+	def test_deomcase(modify_case,run_reset_case,load_parser_fvSolution,load_parser_transport):
+		pass
 
-now the parameters in the test_parameter are changed
+
+With this approach we will generate 4 testcase which will be executed by the Allrun script and after the test is finshied
+the case will be clean by the Allclean script.
+
 
 
 Extensions

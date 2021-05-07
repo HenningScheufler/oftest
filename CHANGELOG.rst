@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.0.5 (2021-05-7)
+------------------
+
+update documentation and added docstrings
+
 0.0.4 (2021-04-24)
 ------------------
 

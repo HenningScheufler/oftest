@@ -2,17 +2,32 @@ import pytest
 import os
 from dataclasses import dataclass, field
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
-from typing import List, Tuple, Optional, Dict
+from typing import List, Tuple, Optional, Dict, Any
 from shutil import copyfile
 
 
 def base_dir() -> str:
+    """directory of curren test
+
+    Returns:
+        str: directory path of the test
+    """
     f_name = os.getenv("PYTEST_CURRENT_TEST").split("::")[0]
     dir_name = os.path.dirname(f_name)
     return dir_name
 
 
 def path_log(app_name: str = "") -> str:
+    """path of the log file
+
+    reads controlDict to get application if app_name not specified
+
+    Args:
+        app_name (str, optional): name of the application. Defaults to read controlDict to get application.
+
+    Returns:
+        str: path to the log file
+    """
     dir_name = base_dir()
     if app_name:
         return os.path.join(dir_name, "log." + app_name)
@@ -25,13 +40,15 @@ def path_log(app_name: str = "") -> str:
 
 
 class Parser:
-    def __init__(self, filename):
+    """abstract parser class
+    """
+    def __init__(self, filename: str):
         self.filename = filename
 
-    def value(self, keyword):
+    def value(self, keyword: str):
         pass
 
-    def set(self, keyword):
+    def set(self, keyword: str):
         pass
 
     def writeFile(self):
@@ -39,11 +56,16 @@ class Parser:
 
 
 class Pyfoam_parser(Parser):
-    def __init__(self, filename):
+    """pyfoam based openfoam dict parser that modifes a file
+
+    Args:
+        Parser ([type]): abstract class
+    """
+    def __init__(self, filename: str):
         self.filename = filename
         self._ppp = ParsedParameterFile(self.filename)
 
-    def _nested_get(self, dic, keyword):
+    def _nested_get(self, dic: Dict, keyword: str):
         key_list = keyword.split("/")
         key_list[:] = [x for x in key_list if x]
         if len(key_list) == 1:
@@ -52,7 +74,7 @@ class Pyfoam_parser(Parser):
             dic = dic[key]
         return dic
 
-    def _nested_set(self, dic, keyword, value):
+    def _nested_set(self, dic: Dict, keyword: str, value: Any):
         key_list = keyword.split("/")
         key_list[:] = [x for x in key_list if x]
         if len(key_list) == 1:
@@ -62,29 +84,52 @@ class Pyfoam_parser(Parser):
             dic = dic.setdefault(key, {})
         dic[key_list[-1]] = value
 
-    def value(self, keyword):
+    def value(self, keyword: str):
+        """get value of key word
+
+        Args:
+            keyword (str): keyword as string e.g. application
+
+            or in case of a nested dictionary dict1/subDict1/keyword1
+
+        Returns:
+            [type]: return value
+        """
         return self._nested_get(self._ppp.content, keyword)
 
-    def set(self, keyword, value):
+    def set(self, keyword: str, value: Any):
+        """set value
+
+        Args:
+            keyword (str): keyword as string e.g. application
+
+            or in case of a nested dictionary dict1/subDict1/keyword1
+            value (Any): new value
+        """
         self._nested_set(self._ppp.content, keyword, value)
 
     def writeFile(self):
         self._ppp.writeFile()
 
-
 class Case_modifiers:
-    def __init__(
-        self, case_modifiers: dict, dir_name: str, meta_data: Optional[dict] = {}
-    ):
-        """[summary]
-        dict format
+    """modifes and openfoam case by modifying the case files
+    Args:
+        case_modifiers (Dict): dict format filename : list of (keyword , value)
+        e.g.
         {
             "system/controlDict": [ ("stopAt","writeNow"),
-                                    ("endTime",10.1) ]
+                                    ("endTime",10.1) ],
+            "constant/transportProperties": [ ("water/transportModel","Newtonian"),
+                                                ("air/transportModel","Newtonian") ]
         }
-        Args:
-            self ([type]): [description]
-        """
+
+        subdicts are seperated by /
+        dir_name (str): dir of openfoam case
+        meta_data (Optional[Dict], optional): stores additional information. Defaults to {}.
+    """
+    def __init__(
+        self, case_modifiers: Dict, dir_name: str, meta_data: Optional[Dict] = {}
+    ):
         self.modifiers = case_modifiers
         self.dir_name = dir_name
         self.meta_data = meta_data
@@ -97,7 +142,14 @@ class Case_modifiers:
             out += str(self.meta_data)
         return out
 
-    def add_mod(self, file_path, key, val):
+    def add_mod(self, file_path: str, key:str, val: Any):
+        """add new file modification
+
+        Args:
+            file_path (str): path to file
+            key (str): keyword
+            val (Any): value
+        """
         if file_path not in self.modifiers:
             self.modifiers[file_path] = []
         self.modifiers[file_path].append((key, val))
@@ -121,6 +173,9 @@ class Case_modifiers:
             p.writeFile()
 
     def revert_change(self):
+        """
+            revert changes
+        """
         for key in self.modifiers:
             bkp_file = key + ".orig"
 
@@ -131,8 +186,6 @@ class Case_modifiers:
             else:
                 os.remove(bkp_path)
 
-    # def __del__(self):
-    # pass
 
 
 def check_type(c_mod) -> Case_modifiers:
@@ -150,6 +203,18 @@ def check_type(c_mod) -> Case_modifiers:
 
 @pytest.fixture(scope="class")
 def run_case(request):
+    """fixture that runs case by exectuting a bash script
+
+    The case can be modified by passing the Case_modifiers class
+
+    Default name is script name Allrun can be modified by storing the script name
+    in the meta_data of the Case_modifiers:
+
+    c_mod.meta_data["script"] = "SomeScriptName"
+
+    Yields:
+        [Case_modifiers]: Case_modifiers information
+    """
     mod_case = hasattr(request, "param")
     dir_name = base_dir()
     c_mod = Case_modifiers({}, dir_name)
@@ -175,6 +240,18 @@ def run_case(request):
 
 @pytest.fixture(scope="class")
 def run_reset_case(request):
+    """fixture that runs case by exectuting a bash script and reset the case by calling Allclean
+
+    The case can be modified by passing the Case_modifiers class
+
+    Default name is script name Allrun can be modified by storing the script name
+    in the meta_data of the Case_modifiers:
+
+    c_mod.meta_data["script"] = "SomeScriptName"
+
+    Yields:
+        [Case_modifiers]: Case_modifiers information
+    """
     mod_case = hasattr(request, "param")
     dir_name = base_dir()
     c_mod = Case_modifiers({}, dir_name)
@@ -204,6 +281,13 @@ def run_reset_case(request):
 
 @pytest.fixture(scope="class")
 def modify_case(request):
+    """modifies the case without running it
+
+    The case can be modified by passing the Case_modifiers class
+
+    Yields:
+        [Case_modifiers]: Case_modifiers information
+    """
     mod_case = hasattr(request, "param")
     dir_name = base_dir()
     c_mod = Case_modifiers({}, dir_name)
@@ -226,6 +310,11 @@ def modify_case(request):
 
 @pytest.fixture(scope="class")
 def clean_case(request):
+    """cleans case by running Allcean
+
+    Yields:
+        [type]: case modifier
+    """
     mod_case = hasattr(request, "param")
     dir_name = base_dir()
     c_mod = Case_modifiers({}, dir_name)

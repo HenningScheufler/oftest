@@ -123,7 +123,7 @@ c4 = case_mods_fvSolution(4)
 
 @pytest.mark.parametrize("run_reset_case",[c3,c4], indirect=['run_reset_case'])
 @pytest.mark.parametrize("modify_case",[c1,c2], indirect=['modify_case'])
-def test_para_fvSolution(run_reset_case,modify_case,load_parser_fvSolution,load_parser_transport):
+def test_para_fvSolution(modify_case,run_reset_case,load_parser_fvSolution,load_parser_transport):
     par_fvS = load_parser_fvSolution
     par_Trans = load_parser_transport
     assert par_Trans.value("water/transportModel") == modify_case.modifiers["constant/transportProperties"][0][1]

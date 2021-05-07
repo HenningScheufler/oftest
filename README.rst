@@ -9,12 +9,9 @@ Overview
 
     * - docs
       - |docs|
-    * - tests
-      - | |travis| |appveyor| |requires|
-        | |codecov|
     * - package
-      - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
+      - | |version| |wheel|
+
 .. |docs| image:: https://readthedocs.org/projects/oftest/badge/?style=flat
     :target: https://oftest.readthedocs.io/
     :alt: Documentation Status
@@ -35,9 +32,7 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/oftest
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/HenningScheufler/oftest/v0.0.0.svg
-    :alt: Commits since latest release
-    :target: https://github.com/HenningScheufler/oftest/compare/v0.0.2...master
+
 
 
 
@@ -45,7 +40,7 @@ Overview
 
 test framework for OpenFOAM
 
-* Free software: BSD 2-Clause License
+* Free software: GPLv3 License
 
 Installation
 ============
@@ -69,13 +64,13 @@ https://oftest.readthedocs.io/
 Development
 ===========
 
-To run all the tests run::
+To run all the tests run and build the doc::
 
     tox
 
 
-Usage
-=====
+QuickStart
+==========
 
 add conftest.py and pytest.ini to your project
 
