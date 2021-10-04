@@ -2,6 +2,15 @@
 Changelog
 =========
 
+0.1.0 (2021-05-7)
+------------------
+
+added expected_results: loads a results in csv format and return the results in 
+a pandas DataFrame:
+
+test = oftest.expected_results([1,2],('isoAlpha',32))
+test['err_shape']
+
 0.0.5 (2021-05-7)
 ------------------
 
