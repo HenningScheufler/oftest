@@ -1,10 +1,9 @@
 import pytest
 import os
-from dataclasses import dataclass, field
+import pandas as pd
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 from typing import List, Tuple, Optional, Dict, Any
 from shutil import copyfile
-
 
 def base_dir() -> str:
     """directory of curren test
@@ -37,6 +36,22 @@ def path_log(app_name: str = "") -> str:
     app_name = p.value("application")
 
     return os.path.join(dir_name, "log." + app_name)
+
+
+def expected_results(index_cols: List[int],index_parameters: Tuple[Any],filename: str="expected_results.csv") -> pd.DataFrame:
+    """loads a csv with the expected results and return the row of the selected parameters
+
+    Args:
+        index_cols (List[int]): index colums e.g. [0,1] 
+        index_parameters (Tuple[Any]): parameter selection ('StdModel',32)
+        filename (str, optional): result file. Defaults to "expected_results.csv".
+
+    Returns:
+        pd.DataFrame: dataframe sliced with the index parameters
+    """    
+    dir_name = base_dir()
+    expected = pd.read_csv(os.path.join(dir_name, filename),index_col=index_cols)
+    return expected.loc[index_parameters]
 
 
 class Parser:
