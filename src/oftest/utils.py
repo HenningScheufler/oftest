@@ -248,7 +248,8 @@ def run_case(request):
     if c_mod.meta_data:
         if "script" not in c_mod.meta_data:
             c_mod.meta_data["script"] = "Allrun -test"
-    os.system(f"{dir_name}/{c_mod.meta_data['script']}")
+    r_val = os.system(f"{dir_name}/{c_mod.meta_data['script']}")
+    c_mod.meta_data['return_value'] = r_val
 
     yield c_mod
 
@@ -285,13 +286,14 @@ def run_reset_case(request):
     if c_mod.meta_data:
         if "script" not in c_mod.meta_data:
             c_mod.meta_data["script"] = "Allrun -test"
-    os.system(f"{dir_name}/{c_mod.meta_data['script']}")
-
+    r_val = os.system(f"{dir_name}/{c_mod.meta_data['script']}")
+    c_mod.meta_data['return_value'] = r_val
     yield c_mod
 
     c_mod.revert_change()
     if request.config.getoption("--no-clean-up"):
-        os.system(f"{dir_name}/Allclean")
+        r_val = os.system(f"{dir_name}/Allclean")
+        c_mod.meta_data['return_value'] = r_val
 
 
 @pytest.fixture(scope="class")
@@ -338,6 +340,7 @@ def clean_case(request):
 
     c_mod.revert_change()
     if request.config.getoption("--no-clean-up"):
-        os.system(f"{dir_name}/Allclean")
+        r_val = os.system(f"{dir_name}/Allclean")
+        c_mod.meta_data['return_value'] = r_val
 
     yield c_mod
