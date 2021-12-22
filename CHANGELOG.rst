@@ -5,14 +5,20 @@ Changelog
 0.1.2 (2021-12-22)
 ------------------
 
-added exit code to run_case, run_reset_case, clean_case
-accessible with:
-c_mod.success
+added:
+- success to run_case, run_reset_case, clean_case
+- copy_log_files
 
-add copy_log_files() copy files to os.path.join("logs",current_test())
-use case
-if (not run_reset_case.success):
+::
+    accessible with
+    run_reset_case.success
+
+    add copy_log_files() copy files to os.path.join("logs",current_test())
+    use case
+    if (not run_reset_case.success)
     oftest.copy_log_files()
+
+
 
 0.1.1 (2021-12-22)
 ------------------
