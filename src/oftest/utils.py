@@ -3,7 +3,8 @@ import os
 import pandas as pd
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 from typing import List, Tuple, Optional, Dict, Any
-from shutil import copyfile
+from shutil import copyfile, copy
+from glob import glob
 
 def base_dir() -> str:
     """directory of curren test
@@ -36,6 +37,17 @@ def path_log(app_name: str = "") -> str:
     app_name = p.value("application")
 
     return os.path.join(dir_name, "log." + app_name)
+
+def current_test():
+    return os.environ.get('PYTEST_CURRENT_TEST').split(':')[-1].split(' ')[0]
+
+def copy_log_files():
+    dir_name = base_dir()
+    dest_dir = os.path.join("logs",current_test())
+    os.makedirs(dest_dir,exist_ok=True)
+    log_files = glob(r"{}/log.*".format(dir_name))
+    for f in log_files:
+        copy(f,dest_dir)
 
 
 def expected_results(index_cols: List[int],index_parameters: Tuple[Any],filename: str="expected_results.csv") -> pd.DataFrame:
@@ -148,6 +160,7 @@ class Case_modifiers:
         self.modifiers = case_modifiers
         self.dir_name = dir_name
         self.meta_data = meta_data
+        self.success = False
         if "script" not in self.meta_data:
             self.meta_data["script"] = "Allrun -test"
 
@@ -250,7 +263,7 @@ def run_case(request):
             c_mod.meta_data["script"] = "Allrun -test"
     r_val = os.system(f"{dir_name}/{c_mod.meta_data['script']}")
     c_mod.meta_data['return_value'] = r_val
-
+    c_mod.success = (r_val == 0)
     yield c_mod
 
 
@@ -288,12 +301,14 @@ def run_reset_case(request):
             c_mod.meta_data["script"] = "Allrun -test"
     r_val = os.system(f"{dir_name}/{c_mod.meta_data['script']}")
     c_mod.meta_data['return_value'] = r_val
+    c_mod.success = (r_val == 0)
     yield c_mod
 
     c_mod.revert_change()
     if request.config.getoption("--no-clean-up"):
         r_val = os.system(f"{dir_name}/Allclean")
         c_mod.meta_data['return_value'] = r_val
+        c_mod.success = (r_val == 0)
 
 
 @pytest.fixture(scope="class")
@@ -342,5 +357,6 @@ def clean_case(request):
     if request.config.getoption("--no-clean-up"):
         r_val = os.system(f"{dir_name}/Allclean")
         c_mod.meta_data['return_value'] = r_val
+        c_mod.success = (r_val == 0)
 
     yield c_mod
