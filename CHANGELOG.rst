@@ -2,6 +2,13 @@
 Changelog
 =========
 
+0.1.1 (2021-12-22)
+------------------
+
+added exit code to run_case, run_reset_case, clean_case
+accessible with:
+c_mod.meta_data['return_value']
+
 0.1.0 (2021-05-7)
 ------------------
 
