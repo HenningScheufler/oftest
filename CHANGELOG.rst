@@ -2,6 +2,12 @@
 Changelog
 =========
 
+0.2.0 (2021-1-20)
+-----------------
+
+added:
+- log files are copied in logs folder
+
 0.1.2 (2021-12-22)
 ------------------
 

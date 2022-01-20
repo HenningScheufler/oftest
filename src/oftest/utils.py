@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 from typing import List, Tuple, Optional, Dict, Any
-from shutil import copyfile, copy
+from shutil import copyfile, copy, copy2
 from glob import glob
 
 def base_dir() -> str:
@@ -37,6 +37,20 @@ def path_log(app_name: str = "") -> str:
     app_name = p.value("application")
 
     return os.path.join(dir_name, "log." + app_name)
+
+def save_logs(request):
+    dir_name = base_dir()
+    testname = request.node.name
+    testname = testname.replace("[","_")
+    testname = testname.replace("]","")
+    logs = [f for f in os.listdir(dir_name) if "log." in f]
+    rootdir = request.config.rootdir
+    log_folder = os.path.join(rootdir,"logs",testname)
+    print("log_folder",log_folder)
+    os.makedirs(log_folder,exist_ok=True)
+    for log in logs:
+        log_path = os.path.join(dir_name,log)
+        copy2(log_path,log_folder)
 
 def current_test():
     return os.environ.get('PYTEST_CURRENT_TEST').split(':')[-1].split(' ')[0]
@@ -303,6 +317,8 @@ def run_reset_case(request):
     c_mod.meta_data['return_value'] = r_val
     c_mod.success = (r_val == 0)
     yield c_mod
+
+    save_logs(request)
 
     c_mod.revert_change()
     if request.config.getoption("--no-clean-up"):
