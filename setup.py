@@ -23,7 +23,7 @@ def read(*names, **kwargs):
 
 setup(
     name='oftest',
-    version='0.2.0',
+    version='0.2.1',
     license='GPLv3',
     description='test framework for OpenFOAM',
     long_description='%s\n%s' % (

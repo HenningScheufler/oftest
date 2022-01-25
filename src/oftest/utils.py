@@ -38,6 +38,20 @@ def path_log(app_name: str = "") -> str:
 
     return os.path.join(dir_name, "log." + app_name)
 
+def path_logs() -> List[str]:
+    """get all log files
+
+    Returns:
+        List[str]: pathes to the log files
+    """
+    dir_name = base_dir()
+    logs = []
+    for f in os.listdir(dir_name):
+        log = os.path.join(dir_name,f)
+        if os.path.isfile(log) and "log." in f:
+            logs.append(log)
+    return logs
+
 def save_logs(request):
     dir_name = base_dir()
     testname = request.node.name
